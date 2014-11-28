@@ -32,7 +32,7 @@ exports.show = function(req, res) {
 
 // Creates a new car in the DB.
 exports.create = function(req, res) {
-  var queryString = 'INSERT INTO clientes SET ?';
+  var queryString = 'INSERT INTO garage SET ?';
   bdd.query(queryString, req.body, function(err, result) {
     if (err) return handleError(res, err);
     res.json(result);
@@ -41,13 +41,12 @@ exports.create = function(req, res) {
 
 // Updates an existing car in the DB.
 exports.update = function(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-
-  var _id = req.params.clienteId;
+  // if (req.body.id) {
+  //   delete req.body.id;
+  // }
+  var id = req.params.id;
   // console.log(req.body);
-  var queryString = 'UPDATE clientes SET ? WHERE _id=' + _id;
+  var queryString = 'UPDATE car SET ? WHERE id=' + id;
   bdd.query(queryString, req.body, function(err, result) {
     if (err) return handleError(res, err);
     res.json(result);
@@ -56,15 +55,15 @@ exports.update = function(req, res) {
 // Deletes a car from the DB.
 exports.destroy = function(req, res) {
 
-  var id = res.locals.producto._id;
-  var queryString = 'SELECT * FROM ventas_detalles WHERE producto_id = "' + id + '"';
+  var id = res.locals.car.id;
+  var queryString = 'SELECT * FROM car WHERE car.id = "' + id + '"';
   bdd.query(queryString, function(err, result) {
     if (err) throw err;
     // an example using an object instead of an array
     async.series({
         one: function(callback) {
           async.each(result, function(data, cb) {
-            var queryString = 'DELETE FROM garage WHERE garage._id =' + data.garage_id;
+            var queryString = 'DELETE FROM garage WHERE garage.id =' + data.id;
             bdd.query(queryString, function(err, result) {
               if (err) throw err;
               cb();
@@ -73,21 +72,14 @@ exports.destroy = function(req, res) {
             if (err) throw err;
             callback(null, 1);
           });
-        },
+        }
         two: function(callback) {
-          var queryString = 'DELETE FROM ventas_detalles WHERE producto_id="' + id + '"';
+          var queryString = 'DELETE FROM car WHERE id="' + id + '"';
           bdd.query(queryString, function(err, result) {
             if (err) throw err;
             callback(null, 2);
           });
         },
-        three: function(callback) {
-          var queryString = 'DELETE FROM productos WHERE _id="' + id + '"';
-          bdd.query(queryString, function(err, result) {
-            if (err) throw err;
-            callback(null, 3);
-          });
-        }
       },
       function(err, results) {
         if (err) console.log("error");
