@@ -18,6 +18,8 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/reserva/reserva.socket').register(socket);
+  require('../api/garage/garage.socket').register(socket);
   require('../api/car/car.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }

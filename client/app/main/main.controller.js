@@ -2,11 +2,12 @@
 
 angular.module('rentaCarApp')
   .controller('MainCtrl', function ($scope, $http, socket, $state) {
-    $scope.awesomeThings = [];
+    $scope.Things = [];
+    $scope.autos = {};
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $http.get('/api/things').success(function(Things) {
+      $scope.Things = Things;
+      socket.syncUpdates('thing', $scope.Things);
     });
 
     $scope.addThing = function() {

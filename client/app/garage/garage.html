@@ -1,0 +1,48 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Rent a Car</h1>
+    <p class="lead">Agrega Tus garages, donde guardaras tus autos</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Features:</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="garage in garages">
+        <li><a href="#" tooltip="{{garage.info}}"><i class="fa fa-car fa-2x"></i>  {{garage.name}}<button type="button" class="close" ng-click="deleteGarage(garage)">&times;</button></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+<form class="thing-form">
+    <div class="input-group margin-bottom-sm">
+      <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+    <input type="text" class="form-control" placeholder="Nombre Garage" ng-model="nombre">
+    </div>
+
+    <div class="input-group margin-bottom-sm">
+      <span class="input-group-addon"><i class="fa fa-building-o fa-fw"></i></span>
+    <input type="text" class="form-control" placeholder="Direccion" ng-model="direccion">
+    </div>
+
+
+    <span class="input-group-btn">
+        <button type="submit" ng-click="addGarage()" class="btn btn-primary">Añadir Garage</button>
+    </span>
+
+    <span class="input-group-btn" align="right">
+        <button type="submit" ng-click="varView()" class="btn btn-primary">Añadir Auto</button>
+    </span>
+  </form>
+
+<footer class="footer">
+  <div class="container">
+      <p>Angular Fullstack v2.0.13 |
+        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+  </div>
+</footer>

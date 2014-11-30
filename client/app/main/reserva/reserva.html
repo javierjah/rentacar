@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-controller="ReservaCtrl" >
+	<header class="hero-unit" id="banner">
+		<div class="container">
+			<h1>{{autos.name}}</h1>
+			<p class="lead">{{autos.info}}</p>
+		</div>
+	</header>
+	
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<tr><th class="active">Nombre</th><th class="success">Patente</th><th class="warning">color</th><th class="danger">marca</th><th class="danger">garage</th</tr>
+			<tr ng-repeat="auto in autos">
+				<td class="success">{{auto.info}}</td>
+				<td class="active">{{auto.name}}</td>
+				<td class="danger">{{auto.name}}</td>
+				<td class="warning">{{auto.name}}</td>
+				<td class="warning">{{auto.name}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<footer class="footer">
+	<div class="container">
+		<p>Rent a Car v1.0g |
+		<a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+		<a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+	</div>
+</footer>
