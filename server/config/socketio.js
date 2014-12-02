@@ -17,11 +17,6 @@ function onConnect(socket) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
   });
 
-  // Insert sockets below
-  require('../api/reserva/reserva.socket').register(socket);
-  require('../api/garage/garage.socket').register(socket);
-  require('../api/car/car.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
 }
 
 module.exports = function (socketio) {

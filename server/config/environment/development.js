@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/rentacar-dev'
   },
 
-  seedDB: true
+  seedDB: false
 };
